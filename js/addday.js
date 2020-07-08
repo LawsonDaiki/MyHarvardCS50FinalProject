@@ -69,71 +69,73 @@ function checkDate(time) {
 // Manipulate DOM to create a dates tables section at the display
 function printDatesSection() {
     clearDatesSection();
-    travelDates.forEach(function(travelDate){
+    if (travelDates) {
+        travelDates.forEach(function(travelDate){
 
-        // Create title with a date
-        const dateTitle = document.createElement("div");
-        let travelDateStr = new Date(travelDate.date);
-        travelDateStr = travelDateStr.toUTCString().split(" ");
-        dateTitle.textContent = travelDateStr[0] + " " + travelDateStr[1] + " " + travelDateStr[2] + " " + travelDateStr[3];
-        dateTitle.classList.add("date-title");
-        dateTitle.setAttribute("id", `${travelDate.id}dateTitle`);
-
-        // Create edit button and add event listener
-        const editButton = createEditDateButton("edit-date-button-class", travelDate.id)
-        editButton.addEventListener("click", function() {
-            openDateEditModal(travelDate.id);
+            // Create title with a date
+            const dateTitle = document.createElement("div");
+            let travelDateStr = new Date(travelDate.date);
+            travelDateStr = travelDateStr.toUTCString().split(" ");
+            dateTitle.textContent = travelDateStr[0] + " " + travelDateStr[1] + " " + travelDateStr[2] + " " + travelDateStr[3];
+            dateTitle.classList.add("date-title");
+            dateTitle.setAttribute("id", `${travelDate.id}dateTitle`);
+    
+            // Create edit button and add event listener
+            const editButton = createEditDateButton("edit-date-button-class", travelDate.id)
+            editButton.addEventListener("click", function() {
+                openDateEditModal(travelDate.id);
+            });
+    
+            // Create table
+            const dateTable = document.createElement("div");
+            dateTable.classList.add("date-table");
+            dateTable.setAttribute("id", `${travelDate.id}dateTable`)
+    
+            // Attach an event listener for the drag and drop
+            dateTable.addEventListener("dragover", (event) => {
+                event.preventDefault();
+                const afterElement = getDragAfterElement(dateTable, event.clientY)
+                const dragged = document.querySelector(".dragging");
+                draggedOverDateId = travelDate.id;
+                if (afterElement == null) {
+                    dateTable.appendChild(dragged)
+                    belowTargetPlaceId = null;
+    
+                } else {
+                    dateTable.insertBefore(dragged, afterElement)
+                    belowTargetPlaceId = parseInt(afterElement.id,10);
+                }
+            });
+    
+            // Create div
+            const dateDiv = document.createElement("div");
+            dateDiv.classList.add("date-div");
+            dateDiv.setAttribute("id", `${travelDate.id}dateDiv`);
+    
+            // Create header
+            const header = document.createElement("div");
+            header.classList.add("date-header");
+            header.classList.add(`date-header-id-${travelDate.id}`);
+            header.appendChild(dateTitle);
+            header.appendChild(editButton);
+    
+            // Create div to insert the places
+            const placesDiv = document.createElement("div");
+            placesDiv.setAttribute("class", "places-div");
+            placesDiv.setAttribute("id", `${travelDate.id}placesDiv`);
+            placesDiv.appendChild(dateTable);
+    
+            dateDiv.appendChild(header);
+            dateDiv.appendChild(placesDiv);
+            const getDatesSection = document.querySelector(".dates-container");
+            getDatesSection.appendChild(dateDiv);
+    
+            // Add style to display edit button when hover over place row
+            var css = `.date-header-id-${travelDate.id}:hover .edit-date-button-class { display: block; }`;
+            var style = document.querySelector('#dateHeaderStyleSheet');
+            style.appendChild(document.createTextNode(css));
         });
-
-        // Create table
-        const dateTable = document.createElement("div");
-        dateTable.classList.add("date-table");
-        dateTable.setAttribute("id", `${travelDate.id}dateTable`)
-
-        // Attach an event listener for the drag and drop
-        dateTable.addEventListener("dragover", (event) => {
-            event.preventDefault();
-            const afterElement = getDragAfterElement(dateTable, event.clientY)
-            const dragged = document.querySelector(".dragging");
-            draggedOverDateId = travelDate.id;
-            if (afterElement == null) {
-                dateTable.appendChild(dragged)
-                belowTargetPlaceId = null;
-
-            } else {
-                dateTable.insertBefore(dragged, afterElement)
-                belowTargetPlaceId = parseInt(afterElement.id,10);
-            }
-        });
-
-        // Create div
-        const dateDiv = document.createElement("div");
-        dateDiv.classList.add("date-div");
-        dateDiv.setAttribute("id", `${travelDate.id}dateDiv`);
-
-        // Create header
-        const header = document.createElement("div");
-        header.classList.add("date-header");
-        header.classList.add(`date-header-id-${travelDate.id}`);
-        header.appendChild(dateTitle);
-        header.appendChild(editButton);
-
-        // Create div to insert the places
-        const placesDiv = document.createElement("div");
-        placesDiv.setAttribute("class", "places-div");
-        placesDiv.setAttribute("id", `${travelDate.id}placesDiv`);
-        placesDiv.appendChild(dateTable);
-
-        dateDiv.appendChild(header);
-        dateDiv.appendChild(placesDiv);
-        const getDatesSection = document.querySelector(".dates-container");
-        getDatesSection.appendChild(dateDiv);
-
-        // Add style to display edit button when hover over place row
-        var css = `.date-header-id-${travelDate.id}:hover .edit-date-button-class { display: block; }`;
-        var style = document.querySelector('#dateHeaderStyleSheet');
-        style.appendChild(document.createTextNode(css));
-    });
+    }
 
     return;
 }
