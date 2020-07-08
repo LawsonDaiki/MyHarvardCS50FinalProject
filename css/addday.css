@@ -1,0 +1,26 @@
+.add-day-modal{
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.form-add-day{
+	background-color: white;
+	margin-left: 40%;
+	margin-top: 15%;
+	padding: 20px;
+    width: 15%;
+	box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
+	animation-name: modalOpen;
+	animation-duration: 0.5s;
+}
+
+.form-add-day .dateGroup {
+	margin-top: 1em;
+}

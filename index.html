@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<title>My Trip Plan</title>
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="css/reset.css">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/addplacemodal.css">
+		<link rel="stylesheet" type="text/css" href="css/sectioncontainer.css">
+		<link rel="stylesheet" type="text/css" href="css/editplacemodal.css">
+		<link rel="stylesheet" type="text/css" href="css/editdate.css">
+		<link rel="stylesheet" type="text/css" href="css/addday.css">
+		<link rel="stylesheet" type="text/css" href="css/addroutemodal.css">
+		<style id="dateHeaderStyleSheet"></style>
+		<style id="placeRowStyleSheet"></style>
+
+	</head>
+	<body>
+		<!-- Google maps element -->
+		<div id="map"></div>
+
+		<main>
+
+			<!-- section for the travel itinerary -->
+			<div class="section-layout">
+
+				<!-- section for the dates and places table -->
+				<section class="dates-container">
+				</section>
+
+				<!-- section for the task button -->
+				<div class="task-actions">
+					<button id="open-add-day-modal" class="open-add-day-modal">+ Add day</button>
+				</div>
+			</div>
+
+			<!-- section for the every modal of the SPA -->
+			<div class="modals"></div>
+
+				<!-- modal to choose the city and dates -->
+				<div class="choose-city-modal" id="choose-city-modal">
+					<form id="form-choose-city" class="form-choose-city">
+						<h3 id="chooseCityTitle">Find the good out there.</h3>
+						<div class="dateGroup">
+							<label for="city">Select a city:</label>
+							<input id="search-term" name="city" type="text" class="camp-medium" placeholder="Where to?">
+						</div>
+						<div class="dateGroup">
+							<label for="arrivalDate">Arrival date:</label>
+							<input id="arrivalDate" name="arrivalDate" type="date" class="camp-medium">
+						</div>
+						<div class="dateGroup">
+							<label for="departureDate">Departure date:</label>
+							<input id="departureDate" name="departureDate" type="date" class="camp-medium">
+						</div>
+						<ul id="date-error-message" class="error-messages"></ul>
+						<button id="add-dates" class="button bto-principal">Submit</button>
+					</form>
+				</div>
+
+				<!-- modal to EDIT DATE -->
+				<div class="edit-date-modal" id="edit-date-modal">
+					<form id="form-edit-date" class="form-edit-date">
+						<span class="closeBtn" id="editDateCloseBtn">&times;</span>
+						<h3 id="editDateTitle">Edit date</h3>
+						<div class="dateGroup">
+							<label for="editDate">Select a day:</label>
+							<input id="editDate" name="editDate" type="date" class="camp-medium">
+						</div>
+						<ul id="edit-date-error-message" class="error-messages"></ul>
+						<button id="edit-date" class="button bto-principal">Submit</button>
+						<button id="delete-date" class="button bto-principal">Delete Day</button>
+					</form>
+				</div>
+				
+				<!-- modal to ADD DAY -->
+				<div class="add-day-modal" id="add-day-modal">
+					<form id="form-add-day" class="form-add-day">
+						<span class="closeBtn" id="addDayCloseBtn">&times;</span>
+						<div class="dateGroup">
+							<label for="addDay">Select a date:</label>
+							<input id="addDay" name="addDay" type="date" class="camp-medium">
+						</div>
+						<ul id="add-day-error-message" class="error-messages"></ul>
+						<button id="add-day-button" class="button bto-principal">Add day</button>
+					</form>
+				</div>
+
+				<!-- modal to ADD PLACE -->
+				<div class="add-place-modal" id="add-place-modal">
+					<form id="form-addplace" class="add-place-modal-content">
+						<span class="closeBtn" id="addCloseBtn">&times;</span>
+						<h3 id="addPlaceTitle"></h3>
+						<ul id="addPlaceData">
+							<li><a target="_blank" id="addPlaceWebsite"></a></li>
+							<li id="addPlaceAddress"></li>
+							<li id="addPlacePhonenumber"></li>
+							<li id="addPlaceBusinessStatus"></li>
+							<ul id="addPlaceOpeningHours"></ul>
+						</ul>
+						<div id="dateInput-addModal"></div>
+						<div class="timeGroup">
+							<label for="addArrivalTime">Arrival time:</label>
+							<input id="addArrivalTime" name="addArrivalTime" type="time" class="camp-medium">
+						</div>
+						<div class="timeGroup">
+							<label for="addDepartureTime">Departure time:</label>
+							<input id="addDepartureTime" name="addDepartureTime" type="time" class="camp-medium">
+						</div>
+						<ul id="error-message-addModal" class="error-messages"></ul>
+						<button id="add-place" class="button bto-principal">Add Place</button>
+					</form>
+				</div>
+
+				<!-- modal to EDIT PLACE -->
+				<div class="edit-place-modal" id="edit-place-modal">
+					<form id="form-editplace" class="edit-place-modal-content">
+						<span class="closeBtn" id="editCloseBtn">&times;</span>
+						<div class="edit-modal-header">
+							<h3 id="editPlaceTitle"></h3>
+							<input id="customPlaceNameInput" type="text">
+							<div id="editPlaceNameButton" class="edit-place-name"></div>
+							<button id="saveCustomNameButton" class="edit-place-save-custom-name-button">Save</button>
+							<button id="cancelCustomNameButton" class="edit-place-cancel-custom-name-button">Cancel</button>
+						</div>
+						<ul id="editPlaceData">
+							<li><a target="_blank" id="editPlaceWebsite"></a></li>
+							<li><a target="_blank" id="openPlaceAtGoogleMaps">Open place at Google Maps</a></li>
+							<li id="editPlaceAddress"></li>
+							<li id="editPlacePhonenumber"></li>
+							<li id="editPlaceBusinessStatus"></li>
+							<ul id="editPlaceOpeningHours"></ul>
+						</ul>
+						<div id="dateInput-editModal"></div>
+						<div class="timeGroup">
+							<label for="editArrivalTime">Arrival time:</label>
+							<input id="editArrivalTime" name="editArrivalTime" type="time" class="camp-medium">
+						</div>
+						<div class="timeGroup">
+							<label for="editDepartureTime">Departure time:</label>
+							<input id="editDepartureTime" name="editDepartureTime" type="time" class="camp-medium">
+						</div>
+						<ul id="error-message-editModal" class="error-messages"></ul>
+						<button id="edit-place" class="button bto-principal">Edit</button>
+						<button id="delete-place" class="button bto-principal">Delete</button>
+						<a id="download_places" download="exported_places_JSON_file.txt" href=”” >Download places JSON file</a><br>
+						<a id="download_travelDates" download="exported_travesDates_JSON_file.txt" href=”” >Download dates JSON file</a>
+					</form>
+				</div>
+
+				<!-- Add Route Modal -->
+				<div class="add-route-modal" id="add-route-modal">
+					<form id="form-addroute" class="add-route-modal-form">
+						<span class="closeBtn" id="addRouteModalCloseBtn">&times;</span>
+						<div id="addRouteData">
+							<div class="addRouteTimeGroup">
+								<label for="addRouteOriginDepartureTime" id="addRouteOriginLabel"></label>
+								<input id="addRouteOriginDepartureTime" name="addRouteOriginDepartureTime" type="time" class="time-input">
+								<button id="subtract-time-button" class="edit-time-addRouteModal-button"></button>
+							</div>
+							<div class="transportModeGroup">
+								<label for="transportMode">Transportation mode:</label>
+								<select id="transportMode" name="transportModeList">
+									<option id="inputTransportModeNone" value="none">None</option>
+									<option id="inputTransportModeCar" value="car">Car</option>
+									<option id="inputTransportModePedestrian" value="pedestrian">Walking</option>
+									<option id="inputTransportModePublicTransport" value="publicTransport">Public Transport</option>
+									<option id="inputTransportModeCustom" value="custom">Custom Time</option>
+								</select>
+								<div id="routeTime"></div>
+								<input id="customRouteTimeInput" name="customRouteTimeInput" type="time" class="custom-time-input">
+								<button id="enterCustomTime" class="enter-custom-time-addRouteModal-button">Enter</button>
+							</div>
+							<div class="addRouteTimeGroup">
+								<label for="addRouteDestinationArrivalTime" id="addRouteDestinationLabel"></label>
+								<input id="addRouteDestinationArrivalTime" name="addRouteDestinationArrivalTime" type="time" class="time-input">
+								<button id="add-time-button" class="edit-time-addRouteModal-button"></button>
+							</div>
+						</div>
+						<a target="_blank" id="openRouteAtGoogleMaps">Open route at Google Maps</a>
+						<ul id="error-message-addRouteModal" class="error-messages"></ul>
+						<button id="add-route-button" class="button bto-principal">Submit</button>
+					</form>
+				</div>
+			</div>
+
+			<!-- element for place search input -->
+			<div class="searchGroup">
+				<input id="my-input-searchbox" autofocus type="text" placeholder="Enter an address or place name" class="camp">
+			</div>
+			
+		</main>
+
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnQba5ItEgCY0Avh4aROb6-2OUcQmjn5k&libraries=places"></script>
+		<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+    	<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/helpers.js"></script>
+		<script src="js/googlemaps.js"></script>
+		<script src="js/printtable.js"></script>
+		<script src="js/addday.js"></script>
+		<script src="js/localstorage.js"></script>
+		<script src="js/dragndrop.js"></script>
+		<script src="js/addplace.js"></script>
+		<script src="js/placeedit.js"></script>
+		<script src="js/dateedit.js"></script>
+		<script src="js/addroute.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="css/scrollbar.css">
+	</body>
+</html>

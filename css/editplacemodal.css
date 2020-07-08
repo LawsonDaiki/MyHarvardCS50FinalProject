@@ -1,0 +1,97 @@
+.edit-place-modal{
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.edit-place-modal-content{
+	background-color: white;
+	margin-left: 30%;
+	margin-top: 5%;
+	padding: 20px;
+	width: 60%;
+	max-height: 80%;
+	box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
+	animation-name: modalOpen;
+	animation-duration: 0.5s;
+	overflow: auto;
+}
+
+.edit-place-modal-content li {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+#editPlaceBusinessStatus {
+	font-weight: bold;
+}
+
+.marker-edit-btn {
+	display: block;
+	cursor: pointer;
+	color: blue;
+	font-size: 1.2em;
+	text-decoration: underline;
+	padding-top: .7em;
+}
+
+.edit-place-modal-date-label {
+	display: inline-block;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.edit-modal-header {
+	display: flex;
+	align-items: center;
+}
+
+.edit-place-name {
+	display: block;
+	margin-left: 2rem;
+	border: none;
+	cursor: pointer;
+	color: transparent;
+	height: 20px;
+	width: 20px;
+	background-image: url(../img/edit.png);
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+  }
+
+  #customPlaceNameInput {
+	  width: 50%;
+	  display: none;
+  }
+
+  .edit-place-save-custom-name-button {
+	display: none;
+	padding: .2em .4em;
+	border: 0;
+	border-bottom: 3px solid;
+	font-size: .9rem;
+	cursor: pointer;
+	color: #fff;
+	background-color:#0c8cd3;
+	border-color: #04324c;
+	max-width: 10em;
+	margin-left: 1.3rem;
+	margin-right: 0.8rem;	
+}
+
+.edit-place-cancel-custom-name-button {
+	display: none;
+	padding: .2em .4em;
+	border: 0;
+	font-size: .9rem;
+	cursor: pointer;
+	color: black;
+	background-color:transparent;
+	max-width: 10em;
+}

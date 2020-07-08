@@ -1,0 +1,171 @@
+.section-layout{
+	position: fixed;
+	left: 0;
+  width: 25%;
+  height: 100%;
+  background-color: white;
+  overflow: auto;
+}
+
+.dates-container{
+	width: 98%;
+  margin: 0 auto;
+}
+
+.date-div {
+  background-color: rgb(221, 221, 221);
+  margin:.5rem;
+  border-radius: 5px;
+  padding: .5rem;
+}
+
+.date-table {
+  padding-bottom: 1rem;
+}
+
+.place-row {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  background-color: white;
+  cursor: -webkit-grab;
+  cursor: grab;
+  padding: .5rem;
+  border-bottom: 1px solid rgb(185, 185, 185);
+  border-radius: 5px;
+}
+
+.td-arrivaltime-class {
+  width: 40px;
+  padding-left: 5px;
+}
+
+.td-departuretime-class {
+  width: 45px;
+  padding-left: 3px;
+}
+
+.td-name-class {
+    padding-left: 5px;
+}
+
+.edit-place-button-class {
+  display: none;
+	padding-left: 20px;
+	border: none;
+  cursor: pointer;
+	color: transparent;
+  position: absolute;
+  right: 30px;
+  height: 20px;
+  width: 20px;
+  background-image: url(../img/edit.png);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+}
+
+.edit-place-button-class:hover {
+  color: blue;
+  font-weight: bold;
+}
+
+.date-header{
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1rem;
+}
+
+.date-title{
+	font-size: 1.5em;
+	padding-bottom: .5em;
+	margin-top: .5em;
+}
+
+.edit-date-button-class {
+  display: none;
+  padding-left: 10px;
+	border: none;
+	cursor: pointer;
+	color: transparent;
+  position: absolute;
+  right: 25px;
+  height: 20px;
+  width: 20px;
+  background-image: url(../img/edit.png);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+}
+
+.edit-date-button-class:hover {
+  color: blue;
+  font-weight: bold;
+}
+
+h3{
+  font-size: 2em;
+}
+
+.time-conflict {
+	color: red;
+}
+
+.place-row.dragging {
+  opacity: .5;
+}
+
+.task-actions {
+  position: relative;
+  margin-top: 1em;
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+}
+
+.open-add-day-modal {
+  font-size: 1em;
+  color: gray;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  outline:none;
+}
+
+.open-add-day-modal:hover {
+  color: blue;
+  font-weight: bold;
+}
+
+.widget-button-open-route-modal {
+  width: 100%;
+  text-align: center;
+}
+
+.button-open-route-modal {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+	border: none;
+	border: 0;
+	cursor: pointer;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin: 0 auto;
+  outline:none;
+  background-color: transparent;
+}
+
+.icon-open-route-modal {
+  height: 20px;
+  width: 20px;
+  background-image: url(../img/double-arrow.png);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+}
+
+.label-open-route-modal {
+  margin-left: 7px;
+}

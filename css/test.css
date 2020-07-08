@@ -1,0 +1,88 @@
+*{
+	box-sizing: border-box;
+ }
+
+body{
+	margin: 0;
+	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+}
+
+.section-layout{
+	position: fixed;
+	left: 0;
+	width: 20%;
+	background-color: white;
+}
+
+.dates-container{
+	width: 98%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.date-title{
+	font-size: 1.5em;
+	display: block;
+	padding-bottom: .5em;
+	border-bottom: 1px solid #ccc;
+	margin-top: .5em;
+}
+
+.date-table {
+  padding-bottom: 1rem;
+}
+
+.place-row {
+  margin: auto;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid #ccc;
+  background-color: white;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.place-row div {
+  display: inline-block;
+  margin: auto;
+  
+}
+
+.td-arrivaltime-class {
+  width: 40px;
+  padding-left: 5px;
+}
+
+.td-departuretime-class {
+  width: 45px;
+  padding-left: 3px;
+}
+
+.td-name-class {
+	width: 60%;
+}
+
+.td-edit-button-class {
+	width: 20px;
+	border: none;
+	border: 0;
+	font-size: 1em;
+	cursor: pointer;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+	color: blue;
+	text-decoration: underline;
+}
+
+h3{
+	font-size: 2em;
+}
+
+.time-conflict {
+	color: red;
+}
+
+.place-row.dragging {
+  opacity: .5;
+}

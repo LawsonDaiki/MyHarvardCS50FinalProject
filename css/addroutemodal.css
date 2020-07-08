@@ -1,0 +1,101 @@
+.add-route-modal{
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.add-route-modal-form{
+	background-color: white;
+	margin-left: 40%;
+	margin-top: 15%;
+	padding: 20px;
+    width: 40%;
+	box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
+	animation-name: modalOpen;
+	animation-duration: 0.5s;
+}
+
+.add-route-modal-form label {
+	color: black;
+}
+
+.transportModeGroup {
+	display: flex;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.transportModeGroup select {
+	margin-left: 1rem;
+}
+
+.addRouteTimeGroup {
+	display: flex;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.time-input {
+	width: auto;
+	margin-left: 1rem;
+}
+
+.search-route-button {
+	padding: .2em .4em;
+	border: 0;
+	border-bottom: 3px solid;
+	font-size: .9rem;
+	cursor: pointer;
+	color: #fff;
+	background-color:#aaaaaa;
+	border-color: #cacaca;
+	/* width: 10em; */
+	max-width: 10em;
+	margin: 0 .6rem;
+}
+
+.edit-time-addRouteModal-button {
+	display: none;
+	padding: .2em .4em;
+	border: 0;
+	border-bottom: 3px solid;
+	font-size: .9rem;
+	cursor: pointer;
+	color: #fff;
+	background-color:#aaaaaa;
+	border-color: #cacaca;
+	/* width: 10em; */
+	max-width: 10em;
+	margin: 0 .6rem;
+}
+
+.enter-custom-time-addRouteModal-button {
+	display: none;
+	padding: .2em .4em;
+	border: 0;
+	border-bottom: 3px solid;
+	font-size: .9rem;
+	cursor: pointer;
+	color: #fff;
+	background-color:#aaaaaa;
+	border-color: #cacaca;
+	/* width: 10em; */
+	max-width: 10em;
+	margin: 0 .6rem;
+}
+
+#routeTime {
+	font-weight: bold;
+	margin: 0 0.6rem;
+}
+
+.custom-time-input {
+	display: none;
+	width: auto;
+}

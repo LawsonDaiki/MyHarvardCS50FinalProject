@@ -1,0 +1,39 @@
+.add-place-modal{
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.add-place-modal-content{
+	background-color: white;
+	margin-left: 30%;
+	margin-top: 5%;
+	padding: 20px;
+    width: 60%;
+    max-height: 80%;
+	box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
+	animation-name: modalOpen;
+    animation-duration: 0.5s;
+    overflow: auto;
+}
+
+.add-place-modal-content li {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+#addPlaceBusinessStatus {
+	font-weight: bold;
+}
+
+.add-place-modal-date-label {
+	display: inline-block;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
