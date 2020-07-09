@@ -71,6 +71,7 @@ function checkDate(time) {
 // Manipulate DOM to create a dates tables section at the display
 function printDatesSection() {
     clearDatesSection();
+    if (!travelDates) travelDates = [];
     travelDates.forEach(function(travelDate){
 
         // Create title with a date
