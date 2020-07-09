@@ -22,7 +22,7 @@ function addMarker(place) {
 
     // Get the marker icon
     let image = {
-        url: 'http://maps.google.com/mapfiles/ms/icons/pink-dot.png',
+        url: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png',
     }
     
     // Create google maps marker
