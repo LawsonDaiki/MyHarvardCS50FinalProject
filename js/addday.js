@@ -282,7 +282,7 @@ addDayButton.addEventListener("click", function(event){
         return;
     }
 
-    if (!travelDates) travelDates = new TravelDate(1, inputedDateEpoch);
+    if (!travelDates) travelDates = [new TravelDate(1, inputedDateEpoch)];
     else travelDates.push(new TravelDate(greatesDatetId() + 1, inputedDateEpoch));
 
     sortDates();
