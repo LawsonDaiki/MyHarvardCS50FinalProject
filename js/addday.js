@@ -56,10 +56,12 @@ function checkDate(time) {
     if (time < today) errors.push("Date must be in the future.");
 
     // Search for a date conflict
-    for (let i = 0; i < travelDates.length; i++) {
-        if (travelDates[i].date == time) {
-            errors.push("Date conflict.");
-            break;
+    if (travelDates) {
+        for (let i = 0; i < travelDates.length; i++) {
+            if (travelDates[i].date == time) {
+                errors.push("Date conflict.");
+                break;
+            }
         }
     }
 
