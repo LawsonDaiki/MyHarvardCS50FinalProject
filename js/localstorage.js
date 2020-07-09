@@ -1,4 +1,6 @@
 const init = async() => {
+    travelDates = [];
+    places = [];
     try {
         travelDates = await JSON.parse(localStorage.getItem("userTravelDates"));
         places = await JSON.parse(localStorage.getItem("userPlaces"));
