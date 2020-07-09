@@ -81,8 +81,10 @@ function getPlaceDetais(newPlaceId) {
 function greatestId() {
     let greatestIdNumber = 0;
     // Search for the greatest id number
-    for (i = 0; i < places.length; i++) {
-        if (places[i].id > greatestIdNumber) greatestIdNumber = places[i].id;
+    if (places) {
+        for (i = 0; i < places.length; i++) {
+            if (places[i].id > greatestIdNumber) greatestIdNumber = places[i].id;
+        }
     }
     return greatestIdNumber;
 }
