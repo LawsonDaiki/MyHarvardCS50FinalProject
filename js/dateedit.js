@@ -133,13 +133,11 @@ deleteDateButton.addEventListener("click", function (event) {
 
     // Search for the places inside that date and delete then
     let indexesToDelete = [];
-    if (places) {
-        for (let i = 0; i < places.length; i++) {
-            if (places[i].arrival_time >= dateToDelete.date && places[i].arrival_time < (dateToDelete.date + oneDayInMilliseconds)) indexesToDelete.push(i);
-        }
-        for (let i = 0; i < indexesToDelete.length; i++) {
-            places.splice(indexesToDelete[i] - i, 1);
-        }
+    for (let i = 0; i < places.length; i++) {
+        if (places[i].arrival_time >= dateToDelete.date && places[i].arrival_time < (dateToDelete.date + oneDayInMilliseconds)) indexesToDelete.push(i);
+    }
+    for (let i = 0; i < indexesToDelete.length; i++) {
+        places.splice(indexesToDelete[i] - i, 1);
     }
 
     // Clear the last table and markers

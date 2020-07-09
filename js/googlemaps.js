@@ -8,7 +8,7 @@ let map = null;
 // Create the google map
 function initMap() {
   let mapSettings = null;
-  if (!places) mapSettings = {
+  if (!places.length) mapSettings = {
     center: {
       lat: 40.708913,
       lng: -74.039099

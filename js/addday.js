@@ -56,12 +56,10 @@ function checkDate(time) {
     if (time < today) errors.push("Date must be in the future.");
 
     // Search for a date conflict
-    if (travelDates) {
-        for (let i = 0; i < travelDates.length; i++) {
-            if (travelDates[i].date == time) {
-                errors.push("Date conflict.");
-                break;
-            }
+    for (let i = 0; i < travelDates.length; i++) {
+        if (travelDates[i].date == time) {
+            errors.push("Date conflict.");
+            break;
         }
     }
 
@@ -71,73 +69,71 @@ function checkDate(time) {
 // Manipulate DOM to create a dates tables section at the display
 function printDatesSection() {
     clearDatesSection();
-    if (travelDates) {
-        travelDates.forEach(function(travelDate){
+    travelDates.forEach(function(travelDate){
 
-            // Create title with a date
-            const dateTitle = document.createElement("div");
-            let travelDateStr = new Date(travelDate.date);
-            travelDateStr = travelDateStr.toUTCString().split(" ");
-            dateTitle.textContent = travelDateStr[0] + " " + travelDateStr[1] + " " + travelDateStr[2] + " " + travelDateStr[3];
-            dateTitle.classList.add("date-title");
-            dateTitle.setAttribute("id", `${travelDate.id}dateTitle`);
-    
-            // Create edit button and add event listener
-            const editButton = createEditDateButton("edit-date-button-class", travelDate.id)
-            editButton.addEventListener("click", function() {
-                openDateEditModal(travelDate.id);
-            });
-    
-            // Create table
-            const dateTable = document.createElement("div");
-            dateTable.classList.add("date-table");
-            dateTable.setAttribute("id", `${travelDate.id}dateTable`)
-    
-            // Attach an event listener for the drag and drop
-            dateTable.addEventListener("dragover", (event) => {
-                event.preventDefault();
-                const afterElement = getDragAfterElement(dateTable, event.clientY)
-                const dragged = document.querySelector(".dragging");
-                draggedOverDateId = travelDate.id;
-                if (afterElement == null) {
-                    dateTable.appendChild(dragged)
-                    belowTargetPlaceId = null;
-    
-                } else {
-                    dateTable.insertBefore(dragged, afterElement)
-                    belowTargetPlaceId = parseInt(afterElement.id,10);
-                }
-            });
-    
-            // Create div
-            const dateDiv = document.createElement("div");
-            dateDiv.classList.add("date-div");
-            dateDiv.setAttribute("id", `${travelDate.id}dateDiv`);
-    
-            // Create header
-            const header = document.createElement("div");
-            header.classList.add("date-header");
-            header.classList.add(`date-header-id-${travelDate.id}`);
-            header.appendChild(dateTitle);
-            header.appendChild(editButton);
-    
-            // Create div to insert the places
-            const placesDiv = document.createElement("div");
-            placesDiv.setAttribute("class", "places-div");
-            placesDiv.setAttribute("id", `${travelDate.id}placesDiv`);
-            placesDiv.appendChild(dateTable);
-    
-            dateDiv.appendChild(header);
-            dateDiv.appendChild(placesDiv);
-            const getDatesSection = document.querySelector(".dates-container");
-            getDatesSection.appendChild(dateDiv);
-    
-            // Add style to display edit button when hover over place row
-            var css = `.date-header-id-${travelDate.id}:hover .edit-date-button-class { display: block; }`;
-            var style = document.querySelector('#dateHeaderStyleSheet');
-            style.appendChild(document.createTextNode(css));
+        // Create title with a date
+        const dateTitle = document.createElement("div");
+        let travelDateStr = new Date(travelDate.date);
+        travelDateStr = travelDateStr.toUTCString().split(" ");
+        dateTitle.textContent = travelDateStr[0] + " " + travelDateStr[1] + " " + travelDateStr[2] + " " + travelDateStr[3];
+        dateTitle.classList.add("date-title");
+        dateTitle.setAttribute("id", `${travelDate.id}dateTitle`);
+
+        // Create edit button and add event listener
+        const editButton = createEditDateButton("edit-date-button-class", travelDate.id)
+        editButton.addEventListener("click", function() {
+            openDateEditModal(travelDate.id);
         });
-    }
+
+        // Create table
+        const dateTable = document.createElement("div");
+        dateTable.classList.add("date-table");
+        dateTable.setAttribute("id", `${travelDate.id}dateTable`)
+
+        // Attach an event listener for the drag and drop
+        dateTable.addEventListener("dragover", (event) => {
+            event.preventDefault();
+            const afterElement = getDragAfterElement(dateTable, event.clientY)
+            const dragged = document.querySelector(".dragging");
+            draggedOverDateId = travelDate.id;
+            if (afterElement == null) {
+                dateTable.appendChild(dragged)
+                belowTargetPlaceId = null;
+
+            } else {
+                dateTable.insertBefore(dragged, afterElement)
+                belowTargetPlaceId = parseInt(afterElement.id,10);
+            }
+        });
+
+        // Create div
+        const dateDiv = document.createElement("div");
+        dateDiv.classList.add("date-div");
+        dateDiv.setAttribute("id", `${travelDate.id}dateDiv`);
+
+        // Create header
+        const header = document.createElement("div");
+        header.classList.add("date-header");
+        header.classList.add(`date-header-id-${travelDate.id}`);
+        header.appendChild(dateTitle);
+        header.appendChild(editButton);
+
+        // Create div to insert the places
+        const placesDiv = document.createElement("div");
+        placesDiv.setAttribute("class", "places-div");
+        placesDiv.setAttribute("id", `${travelDate.id}placesDiv`);
+        placesDiv.appendChild(dateTable);
+
+        dateDiv.appendChild(header);
+        dateDiv.appendChild(placesDiv);
+        const getDatesSection = document.querySelector(".dates-container");
+        getDatesSection.appendChild(dateDiv);
+
+        // Add style to display edit button when hover over place row
+        var css = `.date-header-id-${travelDate.id}:hover .edit-date-button-class { display: block; }`;
+        var style = document.querySelector('#dateHeaderStyleSheet');
+        style.appendChild(document.createTextNode(css));
+    });
 
     return;
 }
@@ -149,30 +145,28 @@ function createDatesRadioButtonsAtAddPlaceModal() {
     getDateInput.innerHTML = "";
 
     // Create a radio input for each date
-    if (travelDates) {
-        travelDates.forEach(function(travelDate){
-            const dateInput = document.createElement("input");
-            // Set all the attributes for the input
-            dateInput.setAttribute("type", "radio");
-            dateInput.setAttribute("id", `${travelDate.id}dateId-addModal`);
-            dateInput.setAttribute("name", `travelDates-addModal`);
-            dateInput.setAttribute("value", `${travelDate.id}dateId-addModal`);
-    
-            const dateLabel = document.createElement("label");
-            // Set all the attributes for the label
-            dateLabel.setAttribute("class", "add-place-modal-date-label")
-            dateLabel.setAttribute("for", `${travelDate.id}dateId-addModal`);
-    
-            // Get the date for the label
-            let travelDateStr = new Date(travelDate.date);
-            travelDateStr = travelDateStr.toUTCString().split(" ");
-            dateLabel.textContent = travelDateStr[0] + " " + travelDateStr[1] + " " + travelDateStr[2] + " " + travelDateStr[3];
-    
-            getDateInput.appendChild(dateInput);
-            getDateInput.appendChild(dateLabel);
-            getDateInput.appendChild(document.createElement("br"));
-        })
-    }
+    travelDates.forEach(function(travelDate){
+        const dateInput = document.createElement("input");
+        // Set all the attributes for the input
+        dateInput.setAttribute("type", "radio");
+        dateInput.setAttribute("id", `${travelDate.id}dateId-addModal`);
+        dateInput.setAttribute("name", `travelDates-addModal`);
+        dateInput.setAttribute("value", `${travelDate.id}dateId-addModal`);
+
+        const dateLabel = document.createElement("label");
+        // Set all the attributes for the label
+        dateLabel.setAttribute("class", "add-place-modal-date-label")
+        dateLabel.setAttribute("for", `${travelDate.id}dateId-addModal`);
+
+        // Get the date for the label
+        let travelDateStr = new Date(travelDate.date);
+        travelDateStr = travelDateStr.toUTCString().split(" ");
+        dateLabel.textContent = travelDateStr[0] + " " + travelDateStr[1] + " " + travelDateStr[2] + " " + travelDateStr[3];
+
+        getDateInput.appendChild(dateInput);
+        getDateInput.appendChild(dateLabel);
+        getDateInput.appendChild(document.createElement("br"));
+    })
     return;
 }
 
@@ -183,30 +177,28 @@ function createDatesRadioButtonsAtEditPlaceModal() {
     getDateInput.innerHTML = "";
 
     // Create a radio input for each date
-    if (travelDates) {
-        travelDates.forEach(function(travelDate){
-            const dateInput = document.createElement("input");
-            // Set all the attributes for the input
-            dateInput.setAttribute("type", "radio");
-            dateInput.setAttribute("id", `${travelDate.id}dateId-editModal`);
-            dateInput.setAttribute("name", `travelDates-editModal`);
-            dateInput.setAttribute("value", `${travelDate.id}dateId-editModal`);
-    
-            const dateLabel = document.createElement("label");
-            // Set all the attributes for the label
-            dateLabel.setAttribute("class", "edit-place-modal-date-label")
-            dateLabel.setAttribute("for", `${travelDate.id}dateId-editModal`);
-    
-            // Get the date for the label
-            let travelDateStr = new Date(travelDate.date);
-            travelDateStr = travelDateStr.toUTCString().split(" ");
-            dateLabel.textContent = travelDateStr[0] + " " + travelDateStr[1] + " " + travelDateStr[2] + " " + travelDateStr[3];
-    
-            getDateInput.appendChild(dateInput);
-            getDateInput.appendChild(dateLabel);
-            getDateInput.appendChild(document.createElement("br"));
-        })
-    }
+    travelDates.forEach(function(travelDate){
+        const dateInput = document.createElement("input");
+        // Set all the attributes for the input
+        dateInput.setAttribute("type", "radio");
+        dateInput.setAttribute("id", `${travelDate.id}dateId-editModal`);
+        dateInput.setAttribute("name", `travelDates-editModal`);
+        dateInput.setAttribute("value", `${travelDate.id}dateId-editModal`);
+
+        const dateLabel = document.createElement("label");
+        // Set all the attributes for the label
+        dateLabel.setAttribute("class", "edit-place-modal-date-label")
+        dateLabel.setAttribute("for", `${travelDate.id}dateId-editModal`);
+
+        // Get the date for the label
+        let travelDateStr = new Date(travelDate.date);
+        travelDateStr = travelDateStr.toUTCString().split(" ");
+        dateLabel.textContent = travelDateStr[0] + " " + travelDateStr[1] + " " + travelDateStr[2] + " " + travelDateStr[3];
+
+        getDateInput.appendChild(dateInput);
+        getDateInput.appendChild(dateLabel);
+        getDateInput.appendChild(document.createElement("br"));
+    })
     return;
 }
 
@@ -238,7 +230,7 @@ function greatesDatetId() {
 function inputADateAsDefaultValue() {
     const addDayInput = document.querySelector("#addDay");
 
-    if (travelDates) {
+    if (travelDates.length) {
         // Find the last day
         let lastDay = 0;
         for (let i = 0; i < travelDates.length; i++) {
@@ -282,8 +274,7 @@ addDayButton.addEventListener("click", function(event){
         return;
     }
 
-    if (!travelDates) travelDates = [new TravelDate(0, inputedDateEpoch)];
-    else travelDates.push(new TravelDate(greatesDatetId() + 1, inputedDateEpoch));
+    travelDates.push(new TravelDate(greatesDatetId() + 1, inputedDateEpoch));
 
     sortDates();
 

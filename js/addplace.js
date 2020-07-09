@@ -81,10 +81,8 @@ function getPlaceDetais(newPlaceId) {
 function greatestId() {
     let greatestIdNumber = 0;
     // Search for the greatest id number
-    if (places) {
-        for (i = 0; i < places.length; i++) {
-            if (places[i].id > greatestIdNumber) greatestIdNumber = places[i].id;
-        }
+    for (i = 0; i < places.length; i++) {
+        if (places[i].id > greatestIdNumber) greatestIdNumber = places[i].id;
     }
     return greatestIdNumber;
 }
@@ -124,7 +122,7 @@ googlemaps.addEventListener("click", function(event) {
     if (event.target.id == "open-add-place-modal") {
 
         // In the case that the 'travelDates' are empty
-        if (travelDates) {
+        if (travelDates.length) {
             clearAddPlaceModalCurrentData();
         
             // Get more place details and print it at the Add Place Modal
@@ -187,8 +185,7 @@ addButton.addEventListener("click", function(event) {
     // add the new place object to the 'places' array
     // But first, it has to be cloned to store the values and not the obj memory addresses
     let searchedPlaceClone = JSON.parse(JSON.stringify(searchedPlace));
-    if (!places) places = [searchedPlaceClone];
-    else places.push(searchedPlaceClone);
+    places.push(searchedPlaceClone);
     console.log("place added to the 'places' obj");
 
     printTable();
