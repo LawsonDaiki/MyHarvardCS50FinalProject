@@ -122,7 +122,7 @@ googlemaps.addEventListener("click", function(event) {
     if (event.target.id == "open-add-place-modal") {
 
         // In the case that the 'travelDates' are empty
-        if (travelDates.length) {
+        if (travelDates) {
             clearAddPlaceModalCurrentData();
         
             // Get more place details and print it at the Add Place Modal
