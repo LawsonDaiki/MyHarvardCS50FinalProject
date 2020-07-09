@@ -236,7 +236,7 @@ function greatesDatetId() {
 function inputADateAsDefaultValue() {
     const addDayInput = document.querySelector("#addDay");
 
-    if (travelDates.length) {
+    if (travelDates) {
         // Find the last day
         let lastDay = 0;
         for (let i = 0; i < travelDates.length; i++) {
