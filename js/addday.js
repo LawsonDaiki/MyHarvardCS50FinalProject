@@ -147,28 +147,30 @@ function createDatesRadioButtonsAtAddPlaceModal() {
     getDateInput.innerHTML = "";
 
     // Create a radio input for each date
-    travelDates.forEach(function(travelDate){
-        const dateInput = document.createElement("input");
-        // Set all the attributes for the input
-        dateInput.setAttribute("type", "radio");
-        dateInput.setAttribute("id", `${travelDate.id}dateId-addModal`);
-        dateInput.setAttribute("name", `travelDates-addModal`);
-        dateInput.setAttribute("value", `${travelDate.id}dateId-addModal`);
-
-        const dateLabel = document.createElement("label");
-        // Set all the attributes for the label
-        dateLabel.setAttribute("class", "add-place-modal-date-label")
-        dateLabel.setAttribute("for", `${travelDate.id}dateId-addModal`);
-
-        // Get the date for the label
-        let travelDateStr = new Date(travelDate.date);
-        travelDateStr = travelDateStr.toUTCString().split(" ");
-        dateLabel.textContent = travelDateStr[0] + " " + travelDateStr[1] + " " + travelDateStr[2] + " " + travelDateStr[3];
-
-        getDateInput.appendChild(dateInput);
-        getDateInput.appendChild(dateLabel);
-        getDateInput.appendChild(document.createElement("br"));
-    })
+    if (travelDates) {
+        travelDates.forEach(function(travelDate){
+            const dateInput = document.createElement("input");
+            // Set all the attributes for the input
+            dateInput.setAttribute("type", "radio");
+            dateInput.setAttribute("id", `${travelDate.id}dateId-addModal`);
+            dateInput.setAttribute("name", `travelDates-addModal`);
+            dateInput.setAttribute("value", `${travelDate.id}dateId-addModal`);
+    
+            const dateLabel = document.createElement("label");
+            // Set all the attributes for the label
+            dateLabel.setAttribute("class", "add-place-modal-date-label")
+            dateLabel.setAttribute("for", `${travelDate.id}dateId-addModal`);
+    
+            // Get the date for the label
+            let travelDateStr = new Date(travelDate.date);
+            travelDateStr = travelDateStr.toUTCString().split(" ");
+            dateLabel.textContent = travelDateStr[0] + " " + travelDateStr[1] + " " + travelDateStr[2] + " " + travelDateStr[3];
+    
+            getDateInput.appendChild(dateInput);
+            getDateInput.appendChild(dateLabel);
+            getDateInput.appendChild(document.createElement("br"));
+        })
+    }
     return;
 }
 
@@ -179,28 +181,30 @@ function createDatesRadioButtonsAtEditPlaceModal() {
     getDateInput.innerHTML = "";
 
     // Create a radio input for each date
-    travelDates.forEach(function(travelDate){
-        const dateInput = document.createElement("input");
-        // Set all the attributes for the input
-        dateInput.setAttribute("type", "radio");
-        dateInput.setAttribute("id", `${travelDate.id}dateId-editModal`);
-        dateInput.setAttribute("name", `travelDates-editModal`);
-        dateInput.setAttribute("value", `${travelDate.id}dateId-editModal`);
-
-        const dateLabel = document.createElement("label");
-        // Set all the attributes for the label
-        dateLabel.setAttribute("class", "edit-place-modal-date-label")
-        dateLabel.setAttribute("for", `${travelDate.id}dateId-editModal`);
-
-        // Get the date for the label
-        let travelDateStr = new Date(travelDate.date);
-        travelDateStr = travelDateStr.toUTCString().split(" ");
-        dateLabel.textContent = travelDateStr[0] + " " + travelDateStr[1] + " " + travelDateStr[2] + " " + travelDateStr[3];
-
-        getDateInput.appendChild(dateInput);
-        getDateInput.appendChild(dateLabel);
-        getDateInput.appendChild(document.createElement("br"));
-    })
+    if (travelDates) {
+        travelDates.forEach(function(travelDate){
+            const dateInput = document.createElement("input");
+            // Set all the attributes for the input
+            dateInput.setAttribute("type", "radio");
+            dateInput.setAttribute("id", `${travelDate.id}dateId-editModal`);
+            dateInput.setAttribute("name", `travelDates-editModal`);
+            dateInput.setAttribute("value", `${travelDate.id}dateId-editModal`);
+    
+            const dateLabel = document.createElement("label");
+            // Set all the attributes for the label
+            dateLabel.setAttribute("class", "edit-place-modal-date-label")
+            dateLabel.setAttribute("for", `${travelDate.id}dateId-editModal`);
+    
+            // Get the date for the label
+            let travelDateStr = new Date(travelDate.date);
+            travelDateStr = travelDateStr.toUTCString().split(" ");
+            dateLabel.textContent = travelDateStr[0] + " " + travelDateStr[1] + " " + travelDateStr[2] + " " + travelDateStr[3];
+    
+            getDateInput.appendChild(dateInput);
+            getDateInput.appendChild(dateLabel);
+            getDateInput.appendChild(document.createElement("br"));
+        })
+    }
     return;
 }
 
