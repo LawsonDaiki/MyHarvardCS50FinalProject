@@ -5,11 +5,10 @@ let newMarker = null;
 
 let map = null;
 
-if (!places) places = [];
-
 // Create the google map
 function initMap() {
   let mapSettings = null;
+  if (!places) places = [];
   if (!places.length) mapSettings = {
     center: {
       lat: 40.708913,
