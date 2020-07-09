@@ -187,7 +187,8 @@ addButton.addEventListener("click", function(event) {
     // add the new place object to the 'places' array
     // But first, it has to be cloned to store the values and not the obj memory addresses
     let searchedPlaceClone = JSON.parse(JSON.stringify(searchedPlace));
-    places.push(searchedPlaceClone);
+    if (!places) places = [searchedPlaceClone];
+    else places.push(searchedPlaceClone);
     console.log("place added to the 'places' obj");
 
     printTable();
