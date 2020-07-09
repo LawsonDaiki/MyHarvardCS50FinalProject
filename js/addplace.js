@@ -1,3 +1,5 @@
+if (!places) places = [];
+
 // Get modal element
 const addModal = document.getElementById("add-place-modal");
 // Get close button of the add place modal

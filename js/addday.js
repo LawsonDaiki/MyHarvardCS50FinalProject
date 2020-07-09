@@ -1,3 +1,5 @@
+if (!travelDates) travelDates = [];
+
 const addDayModal = document.querySelector("#add-day-modal")
 
 // OPEN add day modal when add day button is clicked
