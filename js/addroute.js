@@ -103,20 +103,17 @@ function openAddRouteModal(placeId) {
     else {
         if (destinyPlace.route.transport_mode === "car") {
             document.querySelector("#inputTransportModeCar").selected = 'true';
-            const routeTimeDisplay = document.querySelector("#routeTime");
-            routeTimeDisplay.innerHTML = `calculating...`
+            document.querySelector("#routeTime").innerHTML = `calculating...`
             searchRoute(destinyPlace.route.transport_mode);
         }
         else if (destinyPlace.route.transport_mode === "pedestrian") {
             document.querySelector("#inputTransportModePedestrian").selected = 'true';
-            const routeTimeDisplay = document.querySelector("#routeTime");
-            routeTimeDisplay.innerHTML = `calculating...`
+            document.querySelector("#routeTime").innerHTML = `calculating...`
             searchRoute(destinyPlace.route.transport_mode);
         }
         else if (destinyPlace.route.transport_mode === "publicTransport") {
             document.querySelector("#inputTransportModePublicTransport").selected = 'true';
-            const routeTimeDisplay = document.querySelector("#routeTime");
-            routeTimeDisplay.innerHTML = `calculating...`
+            document.querySelector("#routeTime").innerHTML = `calculating...`
             searchRoute(destinyPlace.route.transport_mode);
         }
         else if (destinyPlace.route.transport_mode === "custom") {
@@ -136,9 +133,10 @@ function openAddRouteModal(placeId) {
 
 // Display the route time next to the search time button
 function printRouteTime(routeTime) {
-    const routeTimeDisplay = document.querySelector("#routeTime");
     routeTimeInMinutes = Math.round(routeTime / 60);
     routeTimeInMilliseconds = routeTimeInMinutes * 60000;
+
+    const routeTimeDisplay = document.querySelector("#routeTime");
 
     if (routeTimeInMinutes < 60) {
         routeTimeString = `${routeTimeInMinutes} min`
@@ -448,6 +446,8 @@ submitButton.addEventListener("click", function(event) {
     let errorMessages = []
     let errorMessageInModal = document.querySelector("#error-message-addRouteModal");
     errorMessageInModal.innerHTML = "";
+
+    transportMode = document.querySelector("#transportMode").value;
 
     // Check if the route was calculated
     if (transportMode === "car" || transportMode === "pedestrian" || transportMode === "publicTransport") {
